@@ -33,6 +33,8 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
+    <search.optionContributor implementation="com.michalfudala.semanticlight.HighlightOptionContributor"/>
+    <projectConfigurable instance="com.michalfudala.semanticlight.HighlightOptionContributor.HighlightConfigurable" />
   </extensions>
 
   <actions>
