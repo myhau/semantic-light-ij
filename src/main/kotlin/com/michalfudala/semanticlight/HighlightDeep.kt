@@ -24,6 +24,9 @@ class HighlightDeep : AnAction() {
   val foregroundMostImportant = 0.6f
   val foregroundLeastImportant = 0.1f
 
+  val hue = 0.1f
+  val brightness = 1.0f
+
   override fun actionPerformed(e: AnActionEvent) {
     val project = e.getData(CommonDataKeys.PROJECT) ?: error("no project")
     val editor = e.getData(CommonDataKeys.EDITOR) ?: error("no editor")
@@ -53,7 +56,7 @@ class HighlightDeep : AnAction() {
           val b = foregroundLeastImportant
 
           val howMuch = (usage.count().toFloat() / maxUsages) * (a - b) + b
-          val backgroundColor = Color.getHSBColor(0.1f, howMuch, 1.0f)
+          val backgroundColor = Color.getHSBColor(hue, howMuch, brightness)
 
           val textAttributes = TextAttributes(null, backgroundColor, null, null, 10)
 
