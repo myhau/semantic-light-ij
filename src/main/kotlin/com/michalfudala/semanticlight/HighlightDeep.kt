@@ -27,6 +27,8 @@ class HighlightDeep : AnAction() {
   val hue = 0.1f
   val brightness = 1.0f
 
+  val layer = 5
+
   override fun actionPerformed(e: AnActionEvent) {
     val project = e.getData(CommonDataKeys.PROJECT) ?: error("no project")
     val editor = e.getData(CommonDataKeys.EDITOR) ?: error("no editor")
@@ -49,6 +51,7 @@ class HighlightDeep : AnAction() {
     println(
         usagesCount.map { it.count() }
     )
+
     val highlighers =
         usagesCount.map { usage ->
 
@@ -62,7 +65,7 @@ class HighlightDeep : AnAction() {
 
           val (start, end) = usage.range()
 
-          editor.markupModel.addRangeHighlighter(start, end, 5, textAttributes, HighlighterTargetArea.LINES_IN_RANGE)
+          editor.markupModel.addRangeHighlighter(start, end, layer, textAttributes, HighlighterTargetArea.LINES_IN_RANGE)
         }
 
     lastHighlighters = highlighers
